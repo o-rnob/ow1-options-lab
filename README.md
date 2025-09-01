@@ -1,57 +1,57 @@
+# Ow1 Studies & Researches – Options Pricing Lab  
 
-# Ow1 Studies & Researches — Options Lab
+A full-stack **Options Pricing Web App** built with **FastAPI + React + TailwindCSS**, designed for portfolio demonstration.  
+This project replicates a **trading-terminal style interface** (similar to Binance) where users can calculate option prices, Greeks, and visualize option chains with a clean, Apple-grade UI.  
 
-Apple‑grade, Binance‑style options pricing UI + FastAPI backend. Includes:
-- European & American pricing (Black–Scholes, Binomial CRR)
-- Greeks (Δ Γ ν θ ρ)
-- Implied volatility solver
-- Synthetic option chain + chart
-- Clean dark UI that mirrors a trading terminal layout
-- Dockerized for one‑click deploy to **Google Cloud Run** (permanent URL, no ngrok)
+🚀 **Live Demo**: [Your Cloud Run URL will appear here after deployment]  
+📂 **Source Code**: [GitHub Repo Link]  
 
-> Educational demo only. No financial advice.
+---
 
-## Quickstart (local)
+## ✨ Features  
+
+- **Option Pricing Models**  
+  - Black–Scholes (European)  
+  - Binomial CRR (European & American)  
+
+- **Greeks Calculation**  
+  - Delta (Δ), Gamma (Γ), Vega (ν), Theta (Θ), Rho (ρ)  
+
+- **Implied Volatility Estimation**  
+  - Numerical solver using Brent/ Secant hybrid method  
+
+- **Interactive Option Chain**  
+  - Strike prices vs. premiums  
+  - Dynamic charts and tables  
+
+- **Modern UI/UX**  
+  - Dark trading-terminal design  
+  - Fully responsive layout  
+  - Branding: **Ow1 Studies & Researches**  
+
+---
+
+## 🛠️ Tech Stack  
+
+- **Backend**: FastAPI (Python), NumPy, SciPy  
+- **Frontend**: React, TailwindCSS, Recharts  
+- **Containerization**: Docker  
+- **Deployment**: Google Cloud Run (serverless, scalable)  
+
+---
+
+## 📦 How to Run (Local)  
+
 ```bash
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-python main.py  # http://localhost:8080
-```
+# Clone the repo
+git clone https://github.com/yourusername/ow1-options-lab.git
+cd ow1-options-lab
 
-## Deploy to Google Cloud Run (recommended)
-Prereqs:
-- A Google Cloud project with billing enabled
-- gcloud CLI installed and authenticated
-- Artifact Registry API and Cloud Run API enabled
-- Your GitHub repo connected to Cloud Build (optional for CI/CD)
+# Build docker image
+docker build -t ow1-options-lab .
 
-### One‑time setup
-```bash
-# Set your project and region
-gcloud config set project YOUR_PROJECT_ID
-gcloud config set run/region YOUR_REGION   # e.g., asia-south1 or us-central1
-
-# Build and deploy from source using Cloud Buildpacks (no Docker needed)
-gcloud run deploy ow1-options-lab \
-  --source . \
-  --allow-unauthenticated \
-  --port 8080
-```
-
-This will output a **permanent HTTPS URL** like:
-```
-https://ow1-options-lab-xxxxxxxx-uc.a.run.app
-```
-
-### Deploy with Docker (optional)
-```bash
-# Build container
-gcloud builds submit --tag REGION-docker.pkg.dev/PROJECT_ID/ow1/ow1-options-lab:latest
-
-# Deploy image
-gcloud run deploy ow1-options-lab \
-  --image REGION-docker.pkg.dev/PROJECT_ID/ow1/ow1-options-lab:latest \
-  --allow-unauthenticated \
+# Run locally
+docker run -p 8080:8080 ow1-options-lab
   --port 8080
 ```
 
